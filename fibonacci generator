@@ -1,0 +1,69 @@
+
+def generate_fibonacci(n):
+    
+    fib_sequence = [0, 1]
+    
+    
+    for i in range(2, n):
+        next_fib = fib_sequence[i - 1] + fib_sequence[i - 2]  
+        fib_sequence.append(next_fib)  
+    
+    return fib_sequence  
+
+def generate_fibonacci_up_to(limit):
+    fib_sequence = [0, 1]
+    
+    
+    while True:
+        next_fib = fib_sequence[-1] + fib_sequence[-2]
+        if next_fib >= limit:
+            break  
+        fib_sequence.append(next_fib)
+    
+    return fib_sequence  
+
+
+def fibonacci_interactive():
+    print("Welcome to the Fibonacci Generator Program!")
+    
+    while True:
+        print("\nWhat would you like to do?")
+        print("1. Generate the first n Fibonacci numbers")
+        print("2. Generate Fibonacci numbers up to a certain limit")
+        print("3. Exit the program")
+        
+        choice = input("Enter your choice (1/2/3): ")
+        
+        if choice == '1':
+            # Option 1: Generate first n Fibonacci numbers
+            try:
+                n = int(input("Enter the number n (how many Fibonacci numbers to generate): "))
+                if n <= 0:
+                    print("Please enter a positive integer.")
+                else:
+                    fib_list = generate_fibonacci(n)
+                    print(f"The first {n} Fibonacci numbers are: {fib_list}")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        
+        elif choice == '2':
+           
+            try:
+                limit = int(input("Enter the limit (the Fibonacci numbers will stop when they exceed this limit): "))
+                if limit <= 0:
+                    print("Please enter a positive number.")
+                else:
+                    fib_list = generate_fibonacci_up_to(limit)
+                    print(f"Fibonacci numbers up to {limit}: {fib_list}")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        
+        elif choice == '3':
+            
+            print("Goodbye! Exiting the program.")
+            break
+        
+        else:
+            print("Invalid choice. Please select 1, 2, or 3.")
+            
+fibonacci_interactive()
